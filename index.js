@@ -34,25 +34,25 @@ const data = {"falla":"falla",
               "pilotos":"s",
               "meteorologia":"n"
             };
-
+messageArray = [];
 app.post('/script', (request, response) => {
 
-    var pyshell = new PythonShell('script.py');
+  var pyshell = new PythonShell('script.py');
+  messageArray = [];
+  pyshell.send(JSON.stringify(request.body));
 
-    pyshell.send(JSON.stringify(data));
+  pyshell.on('message', function (message) {
+    messageArray.push(message);
+    //console.log(message);
+  });
 
-    pyshell.on('message', function (message) {
-        // received a message sent from the Python script (a simple "print" statement)
-        console.log(message);
-    });
-
-    // end the input stream and allow the process to exit
-    pyshell.end(function (err) {
-        if (err){
-            throw err;
-        };
-        console.log('finished');
-    });
+  pyshell.end(function (err) {
+    if (err){
+      response.status(400).send(err);
+    };
+    response.status(200).send(messageArray);
+    
+  });
 });
 
 app.listen(port, () => {
