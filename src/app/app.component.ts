@@ -11,19 +11,19 @@ export class AppComponent {
   constructor(private app: AppService){}
 
   data: any = {falla: 'falla',
-          automovil: null,
-          nuevo: null,
-          automatico: null,
-          manejar: null,
-          aprender: null,
-          modoestandar: null,
-          manejarestandar: null,
-          mantenimiento: null,
-          estabilizadores: null,
-          combustible: null,
-          sonido: null,
-          pilotos: null,
-          meteorologia: null
+          automovil: 'n',
+          nuevo: 'n',
+          automatico: 'n',
+          manejar: 'n',
+          aprender: 'n',
+          modoestandar: 'n',
+          manejarestandar: 'n',
+          mantenimiento: 'n',
+          estabilizadores: 'n',
+          combustible: 'n',
+          sonido: 'n',
+          pilotos: 'n',
+          meteorologia: 'n'
     };
 
   ngOnInit(){
